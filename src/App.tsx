@@ -299,15 +299,20 @@ export default function App() {
                 className="break-inside-avoid mb-6 md:mb-8 group relative flex flex-col bg-white rounded-3xl border-4 border-[#F472B6] overflow-hidden shadow-[0_8px_20px_rgba(244,114,182,0.2)] hover:shadow-[0_15px_30px_rgba(244,114,182,0.4)] hover:-translate-y-2 transition-all duration-300 ease-in-out transform-gpu will-change-transform"
               >
                 {/* Image Container */}
-                <div className="relative w-full overflow-hidden bg-[#BAE6FD]">
+                <div className="relative w-full min-h-[200px] overflow-hidden bg-[#BAE6FD]">
                   {/* Skeleton Loader Background */}
                   <div className="absolute inset-0 bg-[#BAE6FD] animate-pulse"></div>
                   <img 
-                    src={`${memory.url}?v=final`} 
+                    src={memory.url} 
                     alt="Memori Ethereance" 
-                    loading="lazy"
-                    decoding="async"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (!target.dataset.retried) {
+                        target.dataset.retried = 'true';
+                        target.src = `https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(memory.url)}`;
+                      }
+                    }}
                     className="relative z-10 w-full h-auto block transition-transform duration-300 ease-in-out group-hover:scale-105"
                   />
                   
