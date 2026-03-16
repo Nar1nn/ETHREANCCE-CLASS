@@ -29,7 +29,7 @@ interface Memory {
 const STICKERS = ['Sun', 'Glasses', 'Umbrella', 'Star'];
 
 const galleryData: Memory[] = [
-  { id: '1', url: 'https://i.postimg.cc/26mTmy4M/IMG-20240819-094320-302.webp', caption: 'Formasi lengkap bareng Bu Sri abis upacara! ✨' },
+  { id: '1', url: 'https://i.postimg.cc/26mTmy4M/IMG-20240819-094320-302.jpg', caption: 'Formasi lengkap bareng Bu Sri abis upacara! ✨' },
   { id: '2', url: 'https://i.postimg.cc/R01QPmkv/IMG-20240722-WA0146.jpg', caption: 'Happy Birthday Bu Sri! 🎉 Sehat selalu ya buuu' },
   { id: '3', url: 'https://i.postimg.cc/SKL7Z4BF/IMG-20240725-WA0054.jpg', caption: 'Canggung dikit ga ngaruh, awal mula the boys 11.2 ngumpul 😎' },
   { id: '4', url: 'https://i.postimg.cc/43vb8GDg/IMG-20240725-WA0056.jpg', caption: 'Masih pada jaim nih ceritanya 🤣' },
@@ -55,9 +55,9 @@ const galleryData: Memory[] = [
   { id: '24', url: 'https://i.postimg.cc/L8Yx3r4h/381b2913-f5f7-4947-a34a-f30b7e5428a1.jpg', caption: 'Berkah Ramadhan! Foto bareng abis pesantren kilat di sekolah ✨🕌' },
   { id: '25', url: 'https://i.postimg.cc/YSQ8JYmY/DSCN0913.jpg', caption: 'Keluarga cemara 11.2 nih bos! Senggol dong 😎📸' },
   { id: '26', url: 'https://i.postimg.cc/mr7V0CFM/DSCN1073.jpg', caption: 'Satu lagi dari 11.2! Kompak terus sampai lulus yaa 🫶✨' },
-  { id: '27', url: 'https://i.postimg.cc/5t8pZLFg/IMG-20240812-222517-325.webp', caption: 'Ciwi-ciwi kesayangan kumpul! Cantik-cantik banget sih 💖💅' },
-  { id: '28', url: 'https://i.postimg.cc/W40SQgkv/IMG-20240819-094320-183.webp', caption: 'Bangga banget! Pamer sertifikat bareng Bu Sri tercinta 🏆👩‍🏫' },
-  { id: '29', url: 'https://i.postimg.cc/26mTmy4M/IMG-20240819-094320-302.webp', caption: 'Prestasi lagi nih! Bukti kalau 11.2 nggak cuma jago main, tapi juga berprestasi 🌟✨' },
+  { id: '27', url: 'https://i.postimg.cc/5t8pZLFg/IMG-20240812-222517-325.jpg', caption: 'Ciwi-ciwi kesayangan kumpul! Cantik-cantik banget sih 💖💅' },
+  { id: '28', url: 'https://i.postimg.cc/W40SQgkv/IMG-20240819-094320-183.jpg', caption: 'Bangga banget! Pamer sertifikat bareng Bu Sri tercinta 🏆👩‍🏫' },
+  { id: '29', url: 'https://i.postimg.cc/26mTmy4M/IMG-20240819-094320-302.jpg', caption: 'Prestasi lagi nih! Bukti kalau 11.2 nggak cuma jago main, tapi juga berprestasi 🌟✨' },
   { id: '30', url: 'https://i.postimg.cc/jSpZgZCy/IMG-3688.jpg', caption: 'Panas-panasan pas upacara tetep on point dong ciwi-ciwinya ☀️🎀' },
   { id: '31', url: 'https://i.postimg.cc/9Q6J8JzY/IMG-5747.jpg', caption: 'Bukber time di rumah Camelia! Vibes kelas 12.2 makin solid 🌙🍲' },
   { id: '32', url: 'https://i.postimg.cc/1XM7dDPH/07468b7d-ff93-46d8-8c33-acb1d5d767ef.jpg', caption: 'Fokus tingkat dewa! 🎶 Lagi latihan Cetik biar pentas kita pecah banget!' },
@@ -300,10 +300,12 @@ export default function App() {
               >
                 <div className="relative overflow-hidden bg-[#E0F2FE]">
                   <img 
-                    src={memory.url} 
-                    alt="Memory" 
+                    src={`${memory.url}?v=2`} 
+                    alt="Memori Ethereance" 
                     loading="lazy"
-                    className="relative z-10 w-full h-auto max-w-full transition-transform duration-300 ease-in-out group-hover:scale-105 ![opacity:1] ![visibility:visible]"
+                    referrerPolicy="no-referrer"
+                    crossOrigin="anonymous"
+                    className="relative z-10 w-full h-auto max-w-full transition-transform duration-300 ease-in-out group-hover:scale-105 !opacity-100 !visible"
                   />
                   
                   {/* Random Sticker */}
