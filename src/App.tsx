@@ -314,27 +314,14 @@ export default function App() {
                       {renderSticker(memory.sticker)}
                     </div>
                   )}
-                  
-                  {/* Interactive Caption Overlay */}
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col justify-end p-6">
-                    <div className="bg-white/70 backdrop-blur-md border border-white/60 p-4 rounded-xl text-[#0C4A6E]">
-                      <textarea
-                        value={memory.caption}
-                        onChange={(e) => updateCaption(memory.id, e.target.value)}
-                        placeholder="Klik untuk edit keterangan..."
-                        className="w-full bg-transparent border-none focus:ring-0 text-sm font-['Fredoka'] resize-none placeholder-[#0C4A6E]/60 text-[#0C4A6E]"
-                        rows={2}
-                      />
-                    </div>
-                  </div>
                 </div>
                 
-                {/* Static Caption (Visible on Mobile/Small screens or when not hovered) */}
+                {/* Static Caption (Always Visible) */}
                 {memory.caption && (
-                  <div className="p-4 bg-white/60 backdrop-blur-md border-t border-white/60 md:hidden">
-                    <p className="font-['Fredoka'] text-sm text-[#0C4A6E] italic">
+                  <div className="relative z-20 p-4 sm:p-5 bg-white/60 backdrop-blur-md border-t border-white/60 !block !opacity-100">
+                    <p className="font-['Fredoka'] text-sm sm:text-base text-[#0C4A6E] font-medium leading-relaxed">
                       "{memory.caption.split(/(Bang Alz)/g).map((part, i) => 
-                        part === 'Bang Alz' ? <span key={i} className="text-[#EC4899] font-semibold">{part}</span> : part
+                        part === 'Bang Alz' ? <span key={i} className="text-[#EC4899] font-bold">{part}</span> : part
                       )}"
                     </p>
                   </div>
