@@ -168,29 +168,29 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pb-[100px] md:pb-[150px] overflow-hidden z-10">
-        <Coral1 className="absolute bottom-10 left-10 w-32 h-32 text-[#F472B6] opacity-40 z-20 animate-float" />
-        <Coral2 className="absolute bottom-20 right-10 w-24 h-24 text-[#38BDF8] opacity-40 z-20 animate-float" style={{ animationDelay: '2s' }} />
+        <Coral1 className="absolute bottom-10 left-5 md:left-10 w-16 h-16 md:w-32 md:h-32 text-[#F472B6] opacity-20 md:opacity-40 z-20 md:animate-float" />
+        <Coral2 className="absolute bottom-20 right-5 md:right-10 w-12 h-12 md:w-24 md:h-24 text-[#38BDF8] opacity-20 md:opacity-40 z-20 md:animate-float" style={{ animationDelay: '2s' }} />
         {/* Floating Objects */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
-          <div className="absolute top-[15%] left-[10%] animate-float text-[#F472B6]/60">
-            <Anchor size={64} />
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[10%] left-[5%] md:top-[15%] md:left-[10%] text-[#F472B6] opacity-30 md:opacity-60 md:animate-float">
+            <Anchor className="w-10 h-10 md:w-16 md:h-16" />
           </div>
-          <div className="absolute top-[20%] right-[15%] animate-float text-[#38BDF8]/60" style={{ animationDelay: '1s' }}>
-            <ShipWheel size={80} className="animate-spin-slow" />
+          <div className="absolute top-[15%] right-[5%] md:top-[20%] md:right-[15%] text-[#38BDF8] opacity-30 md:opacity-60 md:animate-float" style={{ animationDelay: '1s' }}>
+            <ShipWheel className="w-12 h-12 md:w-20 md:h-20 md:animate-spin-slow" />
           </div>
-          <div className="absolute bottom-[25%] left-[15%] animate-float text-[#F472B6]/60" style={{ animationDelay: '2s' }}>
-            <Star size={48} fill="currentColor" />
+          <div className="absolute bottom-[30%] left-[5%] md:bottom-[25%] md:left-[15%] text-[#F472B6] opacity-30 md:opacity-60 md:animate-float" style={{ animationDelay: '2s' }}>
+            <Star className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
           </div>
-          <div className="absolute bottom-[20%] right-[10%] animate-float text-[#38BDF8]/60" style={{ animationDelay: '1.5s' }}>
-            <Waves size={56} />
+          <div className="absolute bottom-[25%] right-[5%] md:bottom-[20%] md:right-[10%] text-[#38BDF8] opacity-30 md:opacity-60 md:animate-float" style={{ animationDelay: '1.5s' }}>
+            <Waves className="w-10 h-10 md:w-14 md:h-14" />
           </div>
         </div>
 
         {/* Animated Background Waves (Blobs) */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none hidden md:block">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-[#F9A8D4] rounded-full mix-blend-multiply filter blur-3xl animate-blob opacity-50"></div>
-          <div className="absolute top-10 right-10 w-64 h-64 bg-[#7DD3FC] rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 opacity-50"></div>
-          <div className="absolute -bottom-8 left-20 w-64 h-64 bg-[#FBCFE8] rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 opacity-50"></div>
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+          <div className="absolute top-10 left-10 w-40 h-40 md:w-64 md:h-64 bg-[#F9A8D4] rounded-full mix-blend-multiply filter blur-2xl md:blur-3xl md:animate-blob opacity-40 md:opacity-50"></div>
+          <div className="absolute top-10 right-10 w-40 h-40 md:w-64 md:h-64 bg-[#7DD3FC] rounded-full mix-blend-multiply filter blur-2xl md:blur-3xl md:animate-blob animation-delay-2000 opacity-40 md:opacity-50"></div>
+          <div className="absolute -bottom-8 left-10 md:left-20 w-40 h-40 md:w-64 md:h-64 bg-[#FBCFE8] rounded-full mix-blend-multiply filter blur-2xl md:blur-3xl md:animate-blob animation-delay-4000 opacity-40 md:opacity-50"></div>
         </div>
 
         <div className="z-30 bg-white/40 backdrop-blur-[12px] border border-white/60 p-6 md:p-16 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] max-w-4xl w-full mx-auto transform transition-all hover:scale-[1.02] transition-smooth">
@@ -222,8 +222,8 @@ export default function App() {
         transition={{ duration: 0.8 }}
         className="py-32 md:py-48 px-4 relative z-10"
       >
-        <Coral2 className="absolute top-10 left-5 w-24 h-24 text-[#F472B6] opacity-40 z-20 animate-float" style={{ animationDelay: '1s' }} />
-        <Coral1 className="absolute bottom-10 right-5 w-32 h-32 text-[#38BDF8] opacity-40 z-20 animate-float" style={{ animationDelay: '3s' }} />
+        <Coral2 className="absolute top-10 left-2 md:left-5 w-12 h-12 md:w-24 md:h-24 text-[#F472B6] opacity-20 md:opacity-40 z-20 md:animate-float" style={{ animationDelay: '1s' }} />
+        <Coral1 className="absolute bottom-10 right-2 md:right-5 w-16 h-16 md:w-32 md:h-32 text-[#38BDF8] opacity-20 md:opacity-40 z-20 md:animate-float" style={{ animationDelay: '3s' }} />
         {/* Scroll Bubbles for About Section */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           {bubbles.slice(0, 15).map((bubble) => (
@@ -278,24 +278,14 @@ export default function App() {
       </motion.section>
 
       {/* Memory Gallery Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1 }}
-        className="py-32 md:py-48 px-4 relative z-10"
-      >
-        <Coral1 className="absolute top-20 left-10 w-40 h-40 text-[#38BDF8] opacity-30 z-0 animate-float" style={{ animationDelay: '0.5s' }} />
-        <Coral2 className="absolute top-40 right-10 w-32 h-32 text-[#F472B6] opacity-30 z-0 animate-float" style={{ animationDelay: '2.5s' }} />
+      <section className="py-32 md:py-48 px-4 relative z-10">
+        <Coral1 className="absolute top-20 left-5 md:left-10 w-20 h-20 md:w-40 md:h-40 text-[#38BDF8] opacity-15 md:opacity-30 z-0 md:animate-float" style={{ animationDelay: '0.5s' }} />
+        <Coral2 className="absolute top-40 right-5 md:right-10 w-16 h-16 md:w-32 md:h-32 text-[#F472B6] opacity-15 md:opacity-30 z-0 md:animate-float" style={{ animationDelay: '2.5s' }} />
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              className="inline-block mb-6 p-3 bg-white/50 rounded-3xl backdrop-blur-sm shadow-sm border border-white/60"
-            >
+            <div className="inline-block mb-6 p-3 bg-white/50 rounded-3xl backdrop-blur-sm shadow-sm border border-white/60">
               <ImageIcon size={48} className="text-[#EC4899]" />
-            </motion.div>
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#EC4899] drop-shadow-sm mb-8 font-['Fredoka'] tracking-tight">Galeri Kenangan ETHEREANCE</h2>
             <p className="text-[#0284C7] drop-shadow-sm mb-12 px-4 text-xl font-medium max-w-2xl mx-auto leading-relaxed">Simpan dan lihat kembali momen-momen indah perjalanan kita!</p>
           </div>
@@ -303,28 +293,17 @@ export default function App() {
         {/* Masonry Gallery Grid */}
         {memories.length > 0 ? (
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
-            {memories.map((memory, index) => (
-              <motion.div 
+            {memories.map((memory) => (
+              <div 
                 key={memory.id} 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: (index % 4) * 0.1,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                whileHover={{ y: -10, rotate: Math.random() > 0.5 ? 1 : -1 }}
-                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] active:scale-[0.98] transition-all transition-smooth will-change-transform"
+                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] hover:-translate-y-2 active:scale-[0.98] transition-all duration-300 ease-in-out will-change-transform"
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden bg-[#E0F2FE]">
                   <img 
                     src={memory.url} 
                     alt="Memory" 
                     loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto max-w-full transition-transform transition-smooth group-hover:scale-105"
+                    className="relative z-10 w-full h-auto max-w-full transition-transform duration-300 ease-in-out group-hover:scale-105 ![opacity:1] ![visibility:visible]"
                   />
                   
                   {/* Random Sticker */}
@@ -335,7 +314,7 @@ export default function App() {
                   )}
                   
                   {/* Interactive Caption Overlay */}
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity transition-smooth flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col justify-end p-6">
                     <div className="bg-white/70 backdrop-blur-md border border-white/60 p-4 rounded-xl text-[#0C4A6E]">
                       <textarea
                         value={memory.caption}
@@ -358,7 +337,7 @@ export default function App() {
                     </p>
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         ) : (
@@ -368,7 +347,7 @@ export default function App() {
           </div>
         )}
         </div>
-      </motion.section>
+      </section>
 
       {/* Closing Video Section */}
       <motion.section 
@@ -387,18 +366,18 @@ export default function App() {
         </div>
 
         {/* Floating Decorations */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Left Side */}
-          <Coral1 className="absolute top-[20%] left-[5%] w-16 h-16 md:w-24 md:h-24 text-[#F472B6] opacity-40 animate-float" style={{ animationDelay: '0.5s' }} />
-          <Star className="absolute top-[60%] left-[8%] w-8 h-8 md:w-12 md:h-12 text-[#38BDF8] opacity-50 animate-float" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-[35%] left-[12%] w-12 h-12 md:w-16 md:h-16 rounded-full border border-[#F472B6]/40 bg-[#F472B6]/10 animate-rise" style={{ animationDuration: '8s' }}></div>
-          <div className="absolute top-[75%] left-[15%] w-6 h-6 md:w-8 md:h-8 rounded-full border border-[#F472B6]/30 bg-[#F472B6]/10 animate-rise" style={{ animationDuration: '12s' }}></div>
+          <Coral1 className="absolute top-[20%] left-[5%] w-12 h-12 md:w-24 md:h-24 text-[#F472B6] opacity-20 md:opacity-40 md:animate-float" style={{ animationDelay: '0.5s' }} />
+          <Star className="absolute top-[60%] left-[8%] w-6 h-6 md:w-12 md:h-12 text-[#38BDF8] opacity-30 md:opacity-50 md:animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-[35%] left-[12%] w-8 h-8 md:w-16 md:h-16 rounded-full border border-[#F472B6]/40 bg-[#F472B6]/10 md:animate-rise" style={{ animationDuration: '8s' }}></div>
+          <div className="absolute top-[75%] left-[15%] w-4 h-4 md:w-8 md:h-8 rounded-full border border-[#F472B6]/30 bg-[#F472B6]/10 md:animate-rise" style={{ animationDuration: '12s' }}></div>
 
           {/* Right Side */}
-          <Coral2 className="absolute top-[25%] right-[5%] w-20 h-20 md:w-28 md:h-28 text-[#F472B6] opacity-40 animate-float" style={{ animationDelay: '1.5s' }} />
-          <Star className="absolute top-[65%] right-[10%] w-10 h-10 md:w-14 md:h-14 text-[#38BDF8] opacity-50 animate-float" style={{ animationDelay: '3s' }} />
-          <div className="absolute top-[45%] right-[15%] w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#F472B6]/40 bg-[#F472B6]/10 animate-rise" style={{ animationDuration: '10s' }}></div>
-          <div className="absolute top-[15%] right-[8%] w-8 h-8 md:w-10 md:h-10 rounded-full border border-[#F472B6]/30 bg-[#F472B6]/10 animate-rise" style={{ animationDuration: '14s' }}></div>
+          <Coral2 className="absolute top-[25%] right-[5%] w-16 h-16 md:w-28 md:h-28 text-[#F472B6] opacity-20 md:opacity-40 md:animate-float" style={{ animationDelay: '1.5s' }} />
+          <Star className="absolute top-[65%] right-[10%] w-8 h-8 md:w-14 md:h-14 text-[#38BDF8] opacity-30 md:opacity-50 md:animate-float" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-[45%] right-[15%] w-10 h-10 md:w-20 md:h-20 rounded-full border border-[#F472B6]/40 bg-[#F472B6]/10 md:animate-rise" style={{ animationDuration: '10s' }}></div>
+          <div className="absolute top-[15%] right-[8%] w-6 h-6 md:w-10 md:h-10 rounded-full border border-[#F472B6]/30 bg-[#F472B6]/10 md:animate-rise" style={{ animationDuration: '14s' }}></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
