@@ -193,7 +193,7 @@ export default function App() {
           <div className="absolute -bottom-8 left-20 w-64 h-64 bg-[#FBCFE8] rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 opacity-50"></div>
         </div>
 
-        <div className="z-30 bg-white/40 backdrop-blur-[12px] border border-white/60 p-6 md:p-16 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] max-w-4xl w-full mx-auto transform transition-all hover:scale-[1.02] duration-500">
+        <div className="z-30 bg-white/40 backdrop-blur-[12px] border border-white/60 p-6 md:p-16 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] max-w-4xl w-full mx-auto transform transition-all hover:scale-[1.02] transition-smooth">
           <div className="flex justify-center mb-6 text-[#38BDF8] drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]">
             <Anchor size={48} strokeWidth={2} />
           </div>
@@ -316,13 +316,13 @@ export default function App() {
                   stiffness: 100
                 }}
                 whileHover={{ y: -10, rotate: Math.random() > 0.5 ? 1 : -1 }}
-                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] transition-all duration-500"
+                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] transition-all transition-smooth"
               >
                 <div className="relative overflow-hidden">
                   <img 
                     src={memory.url} 
                     alt="Memory" 
-                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto transition-transform transition-smooth group-hover:scale-105"
                   />
                   
                   {/* Random Sticker */}
@@ -333,7 +333,7 @@ export default function App() {
                   )}
                   
                   {/* Interactive Caption Overlay */}
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity transition-smooth flex flex-col justify-end p-6">
                     <div className="bg-white/70 backdrop-blur-md border border-white/60 p-4 rounded-xl text-[#0C4A6E]">
                       <textarea
                         value={memory.caption}
@@ -408,7 +408,7 @@ export default function App() {
             {/* Soft Glow Behind Video */}
             <div className="absolute inset-0 bg-[#EC4899] opacity-30 blur-[60px] md:blur-[100px] rounded-[3rem] transform scale-105 pointer-events-none"></div>
             
-            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-4 md:border-8 border-[#EC4899] shadow-[0_20px_50px_rgba(236,72,153,0.5)] bg-white/20 transform transition-transform hover:-translate-y-2 duration-500">
+            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-4 md:border-8 border-[#EC4899] shadow-[0_20px_50px_rgba(236,72,153,0.5)] bg-white/20 transform transition-all hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(236,72,153,0.6)] transition-smooth">
               <iframe
                 src="https://player.cloudinary.com/embed/?cloud_name=doimdgaa9&public_id=IMG_6419_oyxjdm"
                 width="100%"
@@ -452,10 +452,10 @@ export default function App() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 group"
             >
-              <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#E0F2FE]/50 border-2 border-[#EC4899] shadow-[0_0_15px_rgba(236,72,153,0.4)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.8)] group-hover:bg-white/80 transition-all duration-300 group-hover:-translate-y-1">
-                <Instagram className="text-[#EC4899] w-6 h-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#E0F2FE]/50 border-2 border-[#EC4899] shadow-[0_0_15px_rgba(236,72,153,0.4)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.8)] group-hover:bg-white/80 transition-all transition-smooth group-hover:scale-110">
+                <Instagram className="text-[#EC4899] w-6 h-6 group-hover:animate-pulse-soft transition-transform transition-smooth" />
               </div>
-              <span className="font-['Fredoka'] text-xl font-semibold text-[#0C4A6E] group-hover:text-[#0284C7] transition-colors duration-300">
+              <span className="font-['Fredoka'] text-xl font-semibold text-[#0C4A6E] group-hover:text-[#0284C7] transition-colors transition-smooth">
                 @ethereancce
               </span>
             </a>
