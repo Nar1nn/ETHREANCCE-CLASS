@@ -281,7 +281,7 @@ export default function App() {
       <section className="py-32 md:py-48 px-4 relative z-10">
         <Coral1 className="absolute top-20 left-5 md:left-10 w-20 h-20 md:w-40 md:h-40 text-[#38BDF8] opacity-15 md:opacity-30 z-0 md:animate-float" style={{ animationDelay: '0.5s' }} />
         <Coral2 className="absolute top-40 right-5 md:right-10 w-16 h-16 md:w-32 md:h-32 text-[#F472B6] opacity-15 md:opacity-30 z-0 md:animate-float" style={{ animationDelay: '2.5s' }} />
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-8">
           <div className="text-center mb-20">
             <div className="inline-block mb-6 p-3 bg-white/50 rounded-3xl backdrop-blur-sm shadow-sm border border-white/60">
               <ImageIcon size={48} className="text-[#EC4899]" />
@@ -290,22 +290,25 @@ export default function App() {
             <p className="text-[#0284C7] drop-shadow-sm mb-12 px-4 text-xl font-medium max-w-2xl mx-auto leading-relaxed">Simpan dan lihat kembali momen-momen indah perjalanan kita!</p>
           </div>
 
-        {/* Masonry Gallery Grid */}
+        {/* Masonry Gallery Grid (Polaroid Style) */}
         {memories.length > 0 ? (
-          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8">
             {memories.map((memory) => (
               <div 
                 key={memory.id} 
-                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] hover:-translate-y-2 active:scale-[0.98] transition-all duration-300 ease-in-out will-change-transform"
+                className="break-inside-avoid mb-6 md:mb-8 group relative flex flex-col bg-white rounded-3xl border-4 border-[#F472B6] overflow-hidden shadow-[0_8px_20px_rgba(244,114,182,0.2)] hover:shadow-[0_15px_30px_rgba(244,114,182,0.4)] hover:-translate-y-2 transition-all duration-300 ease-in-out transform-gpu will-change-transform"
               >
-                <div className="relative overflow-hidden bg-[#E0F2FE]">
+                {/* Image Container */}
+                <div className="relative w-full overflow-hidden bg-[#BAE6FD]">
+                  {/* Skeleton Loader Background */}
+                  <div className="absolute inset-0 bg-[#BAE6FD] animate-pulse"></div>
                   <img 
-                    src={`${memory.url}?v=2`} 
+                    src={`${memory.url}?v=final`} 
                     alt="Memori Ethereance" 
                     loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
-                    crossOrigin="anonymous"
-                    className="relative z-10 w-full h-auto max-w-full transition-transform duration-300 ease-in-out group-hover:scale-105 !opacity-100 !visible"
+                    className="relative z-10 w-full h-auto block transition-transform duration-300 ease-in-out group-hover:scale-105"
                   />
                   
                   {/* Random Sticker */}
@@ -316,10 +319,10 @@ export default function App() {
                   )}
                 </div>
                 
-                {/* Static Caption (Always Visible) */}
+                {/* Static Caption (Polaroid Style) */}
                 {memory.caption && (
-                  <div className="relative z-20 p-4 sm:p-5 bg-white/60 backdrop-blur-md border-t border-white/60 !block !opacity-100">
-                    <p className="font-['Fredoka'] text-sm sm:text-base text-[#0C4A6E] font-medium leading-relaxed">
+                  <div className="p-4 sm:p-5 flex items-center justify-center bg-white">
+                    <p className="font-['Fredoka'] text-sm sm:text-base text-[#0C4A6E] font-medium leading-relaxed text-center">
                       "{memory.caption.split(/(Bang Alz)/g).map((part, i) => 
                         part === 'Bang Alz' ? <span key={i} className="text-[#EC4899] font-bold">{part}</span> : part
                       )}"
