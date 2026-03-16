@@ -148,7 +148,7 @@ export default function App() {
       />
       {/* Background Bubbles */}
       <motion.div 
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block"
         style={{ opacity: bubbleOpacity }}
       >
         {bubbles.map((bubble) => (
@@ -171,7 +171,7 @@ export default function App() {
         <Coral1 className="absolute bottom-10 left-10 w-32 h-32 text-[#F472B6] opacity-40 z-20 animate-float" />
         <Coral2 className="absolute bottom-20 right-10 w-24 h-24 text-[#38BDF8] opacity-40 z-20 animate-float" style={{ animationDelay: '2s' }} />
         {/* Floating Objects */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
           <div className="absolute top-[15%] left-[10%] animate-float text-[#F472B6]/60">
             <Anchor size={64} />
           </div>
@@ -187,7 +187,7 @@ export default function App() {
         </div>
 
         {/* Animated Background Waves (Blobs) */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none hidden md:block">
           <div className="absolute top-10 left-10 w-64 h-64 bg-[#F9A8D4] rounded-full mix-blend-multiply filter blur-3xl animate-blob opacity-50"></div>
           <div className="absolute top-10 right-10 w-64 h-64 bg-[#7DD3FC] rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 opacity-50"></div>
           <div className="absolute -bottom-8 left-20 w-64 h-64 bg-[#FBCFE8] rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 opacity-50"></div>
@@ -225,7 +225,7 @@ export default function App() {
         <Coral2 className="absolute top-10 left-5 w-24 h-24 text-[#F472B6] opacity-40 z-20 animate-float" style={{ animationDelay: '1s' }} />
         <Coral1 className="absolute bottom-10 right-5 w-32 h-32 text-[#38BDF8] opacity-40 z-20 animate-float" style={{ animationDelay: '3s' }} />
         {/* Scroll Bubbles for About Section */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           {bubbles.slice(0, 15).map((bubble) => (
             <motion.div
               key={`about-bubble-${bubble.id}`}
@@ -316,13 +316,15 @@ export default function App() {
                   stiffness: 100
                 }}
                 whileHover={{ y: -10, rotate: Math.random() > 0.5 ? 1 : -1 }}
-                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] transition-all transition-smooth"
+                className="break-inside-avoid group relative flex flex-col bg-[#E0F2FE]/80 backdrop-blur-[10px] rounded-[2.5rem] overflow-hidden border-4 border-[#F472B6] shadow-[0_10px_30px_rgba(244,114,182,0.3)] hover:shadow-[0_20px_50px_rgba(244,114,182,0.5)] active:scale-[0.98] transition-all transition-smooth will-change-transform"
               >
                 <div className="relative overflow-hidden">
                   <img 
                     src={memory.url} 
                     alt="Memory" 
-                    className="w-full h-auto transition-transform transition-smooth group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto max-w-full transition-transform transition-smooth group-hover:scale-105"
                   />
                   
                   {/* Random Sticker */}
@@ -385,7 +387,7 @@ export default function App() {
         </div>
 
         {/* Floating Decorations */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
           {/* Left Side */}
           <Coral1 className="absolute top-[20%] left-[5%] w-16 h-16 md:w-24 md:h-24 text-[#F472B6] opacity-40 animate-float" style={{ animationDelay: '0.5s' }} />
           <Star className="absolute top-[60%] left-[8%] w-8 h-8 md:w-12 md:h-12 text-[#38BDF8] opacity-50 animate-float" style={{ animationDelay: '2s' }} />
@@ -408,7 +410,7 @@ export default function App() {
             {/* Soft Glow Behind Video */}
             <div className="absolute inset-0 bg-[#EC4899] opacity-30 blur-[60px] md:blur-[100px] rounded-[3rem] transform scale-105 pointer-events-none"></div>
             
-            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-4 md:border-8 border-[#EC4899] shadow-[0_20px_50px_rgba(236,72,153,0.5)] bg-white/20 transform transition-all hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(236,72,153,0.6)] transition-smooth">
+            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-4 md:border-8 border-[#EC4899] shadow-[0_20px_50px_rgba(236,72,153,0.5)] bg-white/20 transform transition-all hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(236,72,153,0.6)] active:scale-[0.98] transition-smooth will-change-transform">
               <iframe
                 src="https://player.cloudinary.com/embed/?cloud_name=doimdgaa9&public_id=IMG_6419_oyxjdm"
                 width="100%"
@@ -450,7 +452,7 @@ export default function App() {
               href="https://www.instagram.com/ethereancce" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 group"
+              className="inline-flex items-center justify-center gap-3 group active:scale-95 transition-smooth"
             >
               <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#E0F2FE]/50 border-2 border-[#EC4899] shadow-[0_0_15px_rgba(236,72,153,0.4)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.8)] group-hover:bg-white/80 transition-all transition-smooth group-hover:scale-110">
                 <Instagram className="text-[#EC4899] w-6 h-6 group-hover:animate-pulse-soft transition-transform transition-smooth" />
