@@ -79,14 +79,13 @@ const galleryData: Memory[] = [
 const MemoryImage = ({ url, alt, className }: { url: string; alt: string; className: string }) => {
   const [errorCount, setErrorCount] = useState(0);
 
-  const cleanUrl = url.replace(/^https?:\/\//, '');
-  
+  // postimg.cc has very strict hotlink protection that blocks many standard proxies.
+  // We use Google's OpenSocial proxy as it has the highest success rate for bypassing these blocks.
   const proxies = [
-    `https://i0.wp.com/${cleanUrl}`, // Primary: Jetpack Photon (Very reliable CDN)
-    `https://cdn.statically.io/img/${cleanUrl}`, // Fallback 1: Statically CDN
-    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp`, // Fallback 2: wsrv.nl
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 3: AllOrigins CORS proxy
-    url // Fallback 4: Direct URL
+    `https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=${encodeURIComponent(url)}`, // Primary: Google Proxy (Extremely reliable)
+    `https://corsproxy.io/?${encodeURIComponent(url)}`, // Fallback 1: Dedicated CORS Proxy
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`, // Fallback 2: CodeTabs Proxy
+    url // Fallback 3: Direct URL
   ];
 
   return (
