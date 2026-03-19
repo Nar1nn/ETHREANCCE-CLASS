@@ -80,17 +80,22 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
   const [errorCount, setErrorCount] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  const cleanUrl = url.replace(/^https?:\/\//, '');
-  const altUrl = url.replace('postimg.cc', 'postimages.org');
-
-  // postimg.cc has very strict hotlink protection.
-  // We use a combination of the most reliable proxies to bypass this.
+  // postimg.cc blocks almost everything from Vercel.
+  // We need to use highly resilient proxies or alternative direct links.
+  
+  // 1. Try to get the direct image link from postimg.cc (sometimes works better than the shortlink)
+  // The shortlink is usually https://i.postimg.cc/ID/filename.jpg
+  // We can try to use the alternative domain postimages.org
+  const altDomainUrl = url.replace('postimg.cc', 'postimages.org');
+  
+  // 2. Use a completely different set of proxies that are less likely to be blocked
   const proxies = [
-    `https://i0.wp.com/${cleanUrl}`, // Primary: Jetpack Photon (Extremely stable, bypasses most blocks)
-    `https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(url)}`, // Fallback 1: DuckDuckGo Proxy
-    `https://cdn.statically.io/img/${cleanUrl}`, // Fallback 2: Statically CDN
-    altUrl, // Fallback 3: Alternative direct domain
-    url // Fallback 4: Original direct URL
+    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800&q=80`, // Primary: wsrv.nl (often works well if we specify output and width)
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 1: AllOrigins (CORS proxy, very reliable)
+    `https://images.weserv.nl/?url=${encodeURIComponent(url)}`, // Fallback 2: Older weserv domain
+    altDomainUrl, // Fallback 3: Alternative domain
+    url, // Fallback 4: Original URL
+    `https://placehold.co/600x400/BAE6FD/0C4A6E?text=Image+Not+Available` // Ultimate Fallback: Placeholder so UI doesn't break
   ];
 
   return (
@@ -98,13 +103,17 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
       src={proxies[errorCount]}
       alt={alt}
       referrerPolicy="no-referrer"
+      crossOrigin="anonymous" // Adding this back as some proxies require it
       onLoad={() => setLoaded(true)}
       onError={() => {
         if (errorCount < proxies.length - 1) {
           setErrorCount(prev => prev + 1);
+        } else {
+          // If even the placeholder fails (unlikely), just show it as loaded to stop the loop
+          setLoaded(true);
         }
       }}
-      className={`${className} object-cover ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      className={`${className} object-cover transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
       style={{ minHeight: '200px', width: '100%' }}
     />
   );
