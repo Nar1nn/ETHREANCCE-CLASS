@@ -83,19 +83,20 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
   // postimg.cc blocks almost everything from Vercel.
   // We need to use highly resilient proxies or alternative direct links.
   
-  // 1. Try to get the direct image link from postimg.cc (sometimes works better than the shortlink)
-  // The shortlink is usually https://i.postimg.cc/ID/filename.jpg
-  // We can try to use the alternative domain postimages.org
   const altDomainUrl = url.replace('postimg.cc', 'postimages.org');
   
   // 2. Use a completely different set of proxies that are less likely to be blocked
   const proxies = [
-    url, // Primary: Original URL (often works if referrer is hidden)
-    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800&q=80`, // Fallback 1: wsrv.nl (often works well if we specify output and width)
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 2: AllOrigins (CORS proxy, very reliable)
-    `https://images.weserv.nl/?url=${encodeURIComponent(url)}`, // Fallback 3: Older weserv domain
-    altDomainUrl, // Fallback 4: Alternative domain
-    `https://placehold.co/600x400/BAE6FD/0C4A6E?text=Image+Not+Available` // Ultimate Fallback: Placeholder so UI doesn't break
+    url, // Primary: Original URL
+    `/api/image?url=${encodeURIComponent(url)}`, // Fallback 1: Vercel Serverless Function (Spoofs Referer)
+    `https://images1-focus-opensocial.googleusercontent.com/ig/proxy?url=${encodeURIComponent(url)}&container=focus`, // Fallback 2: Google Proxy
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`, // Fallback 3: CodeTabs (Very reliable CORS proxy)
+    `https://corsproxy.io/?${encodeURIComponent(url)}`, // Fallback 4: CORSProxy.io
+    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800&q=80`, // Fallback 5: wsrv.nl
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 6: AllOrigins
+    `https://images.weserv.nl/?url=${encodeURIComponent(url)}`, // Fallback 7: Older weserv domain
+    altDomainUrl, // Fallback 8: Alternative domain
+    `https://placehold.co/600x400/BAE6FD/0C4A6E?text=Image+Not+Available` // Ultimate Fallback
   ];
 
   return (
