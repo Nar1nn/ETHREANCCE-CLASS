@@ -79,12 +79,12 @@ const galleryData: Memory[] = [
 const MemoryImage = ({ url, alt, className }: { url: string; alt: string; className: string }) => {
   const [errorCount, setErrorCount] = useState(0);
 
-  // postimg.cc has very strict hotlink protection that blocks many standard proxies.
-  // We use Google's OpenSocial proxy as it has the highest success rate for bypassing these blocks.
+  // postimg.cc has very strict hotlink protection.
+  // We use a combination of reliable proxies to bypass this.
   const proxies = [
-    `https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=${encodeURIComponent(url)}`, // Primary: Google Proxy (Extremely reliable)
-    `https://corsproxy.io/?${encodeURIComponent(url)}`, // Fallback 1: Dedicated CORS Proxy
-    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`, // Fallback 2: CodeTabs Proxy
+    `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=${encodeURIComponent(url)}`, // Primary: Google Proxy (Alternative domain)
+    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800`, // Fallback 1: wsrv.nl with resizing
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 2: AllOrigins CORS proxy
     url // Fallback 3: Direct URL
   ];
 
@@ -98,7 +98,8 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
           setErrorCount(prev => prev + 1);
         }
       }}
-      className={className}
+      className={`${className} object-cover`}
+      style={{ minHeight: '200px' }}
     />
   );
 };
