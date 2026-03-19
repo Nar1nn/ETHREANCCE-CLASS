@@ -90,11 +90,11 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
   
   // 2. Use a completely different set of proxies that are less likely to be blocked
   const proxies = [
-    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800&q=80`, // Primary: wsrv.nl (often works well if we specify output and width)
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 1: AllOrigins (CORS proxy, very reliable)
-    `https://images.weserv.nl/?url=${encodeURIComponent(url)}`, // Fallback 2: Older weserv domain
-    altDomainUrl, // Fallback 3: Alternative domain
-    url, // Fallback 4: Original URL
+    url, // Primary: Original URL (often works if referrer is hidden)
+    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800&q=80`, // Fallback 1: wsrv.nl (often works well if we specify output and width)
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 2: AllOrigins (CORS proxy, very reliable)
+    `https://images.weserv.nl/?url=${encodeURIComponent(url)}`, // Fallback 3: Older weserv domain
+    altDomainUrl, // Fallback 4: Alternative domain
     `https://placehold.co/600x400/BAE6FD/0C4A6E?text=Image+Not+Available` // Ultimate Fallback: Placeholder so UI doesn't break
   ];
 
@@ -103,7 +103,6 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
       src={proxies[errorCount]}
       alt={alt}
       referrerPolicy="no-referrer"
-      crossOrigin="anonymous" // Adding this back as some proxies require it
       onLoad={() => setLoaded(true)}
       onError={() => {
         if (errorCount < proxies.length - 1) {
