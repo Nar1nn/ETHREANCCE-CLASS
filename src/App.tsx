@@ -76,6 +76,34 @@ const galleryData: Memory[] = [
   { id: '45', url: 'https://i.postimg.cc/HsDPSsmW/Whats-App-Image-2026-03-14-at-20-11-19.jpg', caption: 'Cool level: Maksimal! Squad cowok-cowok keren 12.2 beraksi. 📸🕶️' },
 ];
 
+const MemoryImage = ({ url, alt, className }: { url: string; alt: string; className: string }) => {
+  const [errorCount, setErrorCount] = useState(0);
+
+  const cleanUrl = url.replace(/^https?:\/\//, '');
+  
+  const proxies = [
+    `https://i0.wp.com/${cleanUrl}`, // Primary: Jetpack Photon (Very reliable CDN)
+    `https://cdn.statically.io/img/${cleanUrl}`, // Fallback 1: Statically CDN
+    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp`, // Fallback 2: wsrv.nl
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 3: AllOrigins CORS proxy
+    url // Fallback 4: Direct URL
+  ];
+
+  return (
+    <img
+      src={proxies[errorCount]}
+      alt={alt}
+      referrerPolicy="no-referrer"
+      onError={() => {
+        if (errorCount < proxies.length - 1) {
+          setErrorCount(prev => prev + 1);
+        }
+      }}
+      className={className}
+    />
+  );
+};
+
 export default function App() {
   const [memories, setMemories] = useState<Memory[]>([]);
   
@@ -302,17 +330,9 @@ export default function App() {
                 <div className="relative w-full min-h-[200px] overflow-hidden bg-[#BAE6FD]">
                   {/* Skeleton Loader Background */}
                   <div className="absolute inset-0 bg-[#BAE6FD] animate-pulse"></div>
-                  <img 
-                    src={memory.url} 
+                  <MemoryImage 
+                    url={memory.url} 
                     alt="Memori Ethereance" 
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      if (!target.dataset.retried) {
-                        target.dataset.retried = 'true';
-                        target.src = `https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(memory.url)}`;
-                      }
-                    }}
                     className="relative z-10 w-full h-auto block transition-transform duration-300 ease-in-out group-hover:scale-105"
                   />
                   
