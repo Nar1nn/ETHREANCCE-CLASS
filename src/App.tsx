@@ -78,14 +78,19 @@ const galleryData: Memory[] = [
 
 const MemoryImage = ({ url, alt, className }: { url: string; alt: string; className: string }) => {
   const [errorCount, setErrorCount] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  const cleanUrl = url.replace(/^https?:\/\//, '');
+  const altUrl = url.replace('postimg.cc', 'postimages.org');
 
   // postimg.cc has very strict hotlink protection.
-  // We use a combination of reliable proxies to bypass this.
+  // We use a combination of the most reliable proxies to bypass this.
   const proxies = [
-    `https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=${encodeURIComponent(url)}`, // Primary: Google Proxy (Alternative domain)
-    `https://wsrv.nl/?url=${encodeURIComponent(url)}&output=webp&w=800`, // Fallback 1: wsrv.nl with resizing
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, // Fallback 2: AllOrigins CORS proxy
-    url // Fallback 3: Direct URL
+    `https://i0.wp.com/${cleanUrl}`, // Primary: Jetpack Photon (Extremely stable, bypasses most blocks)
+    `https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(url)}`, // Fallback 1: DuckDuckGo Proxy
+    `https://cdn.statically.io/img/${cleanUrl}`, // Fallback 2: Statically CDN
+    altUrl, // Fallback 3: Alternative direct domain
+    url // Fallback 4: Original direct URL
   ];
 
   return (
@@ -93,13 +98,14 @@ const MemoryImage = ({ url, alt, className }: { url: string; alt: string; classN
       src={proxies[errorCount]}
       alt={alt}
       referrerPolicy="no-referrer"
+      onLoad={() => setLoaded(true)}
       onError={() => {
         if (errorCount < proxies.length - 1) {
           setErrorCount(prev => prev + 1);
         }
       }}
-      className={`${className} object-cover`}
-      style={{ minHeight: '200px' }}
+      className={`${className} object-cover ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      style={{ minHeight: '200px', width: '100%' }}
     />
   );
 };
